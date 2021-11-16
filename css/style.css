@@ -203,6 +203,9 @@ input {
     align-self: flex-end;
     font-size: 12px;
 }
+.date{
+    color:#a9aeaf ;
+}
 
 .message .text {
     margin-top: 10px;
