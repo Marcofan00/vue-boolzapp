@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Boolzapp</title>
+</head>
+<body>
+    <!-- background -->
+    <div id="background">
+        <!-- main -->
+        <main>
+            <div id="container">
+                <!-- utente -->
+                <section class="contatti">
+                    <div class="utente">
+                        <div class="user-photo">
+                            <div class="avatar">
+                                <img src="img/avatar_io.jpg" alt="avatar">
+                            </div> 
+                            <div class="name"> Nome utente</div>
+                        </div>
+                        <!-- icons -->
+                        <div class="icons">
+                            <i class="fas fa-circle-notch"></i>
+                            <i class="fas fa-comment-alt"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+                    </div>
+                    <div class="new-message row">
+                        <div class="bell">
+                            <i class="fas fa-bell-slash"></i>
+                        </div>
+                        <div class="notifica">
+                            <p>Ricevi notifiche di nuovi messaggi</p>
+                            <p id="gray">Attiva notifiche desktop</p>
+                        </div>
+                    </div>
+                    <!-- search -->
+                    <div class="search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Cerca o inizia una nuova chat" id="search-inp">
+                    </div>
+                    <!-- contatti -->
+                    <div class="row" v-for="contact, i in contacts" :key="i">
+                        <div class="user-photo">
+                            <div class="avatar">
+                                <img :src="'img/avatar'+ contact.avatar +'.jpg'" alt="avatar">
+                            </div> 
+                            <div class="friends"> 
+                                <p>{{contact.name}}</p>
+                                <p class="last-chat">Ok...</p>
+                            </div>
+                        </div>
+                        <div class="last-message">
+                            7/10/2021 18:23:10
+                        </div>
+                    </div>
+                    
+                </section>
+                <!-- chats -->
+                <section class="chat">
+                    <div class="utente">
+                        <div class="user-photo">
+                            <div class="avatar">
+                                <img src="img/avatar_1.jpg" alt="avatar">
+                            </div> 
+                            <div class="friends"> 
+                                <p>Michele</p>
+                                <p class="login">Ultimo accesso oggi alle 7/10/2021 18:23:10</p>
+                            </div>
+                        </div>
+                        <div class="icons">
+                            <i class="fas fa-search"></i>
+                            <i class="fas fa-paperclip"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+                    </div>
+                    <!-- chat -->
+                    <div class="chat-container">
+                        <div class="sent message">
+                            <p class="text">Ok...</p>
+                            <p class="date">7/10/2021 18:23:10</p>
+                        </div>
+                        <div class="sent message">
+                            <p class="text">Ok...</p>
+                            <p class="date">7/10/2021 18:23:10</p>
+                        </div>
+                        <div class="received message">
+                            <p class="text">Ok...</p>
+                            <p class="date">7/10/2021 18:23:10</p>
+                        </div>
+                    </div>
+                    <div class="container-message">
+                        <i class="far fa-smile"></i>
+                        <input type="text" placeholder=" Scrivi un messaggio">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                </section>
+            </div>
+    
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 
