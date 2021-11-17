@@ -1,13 +1,17 @@
 var app = new Vue({
     el: "#container",
     data: {
-        selectedId: 1,
-        text:"",
+        activeChat : 0,
+        user : {
+            name : 'Nome Utente',
+            avatar: 'img/avatar_io.jpg'
+        },
+
+        text : '',
         contacts: [ 
             {
-                id: 1,
                 name: 'Michele',
-                avatar: '_1',
+                avatar: 'img/avatar_1.jpg',
                 visible: true,
                 messages: [
                     {
@@ -24,14 +28,13 @@ var app = new Vue({
                         date: '10/01/2020 16:15:22',
                         text: 'Tutto fatto!',
                         status: 'received'
-                    },
+                    }
                 ],   
             },  
            
             {   
-                id: 2,
                 name: 'Fabio',
-                avatar: '_2',
+                avatar: 'img/avatar_2.jpg',
                 visible: true,
                 messages: [
                     {
@@ -48,14 +51,13 @@ var app = new Vue({
                         date: '20/03/2020 16:30:55',
                         text: 'Mi piacerebbe ma devo andare a fare la spesa.',
                         status: 'sent'
-                    },
+                    }
                 ],
             }, 
 
             {
-                id: 3,
                 name: 'Samuele',
-                avatar: '_3',
+                avatar: 'img/avatar_3.jpg',
                 visible: true,
                 messages: [
                     {
@@ -72,14 +74,13 @@ var app = new Vue({
                         date: '28/03/2020 16:15:22',
                         text: 'Ah scusa!',
                         status: 'received'
-                    },
+                    }
                 ],
             },
 
             {   
-                id: 4,
                 name: 'Luisa',
-                avatar: '_4',
+                avatar: 'img/avatar_4.jpg',
                 visible: true,
                 messages: [
                     {
@@ -91,7 +92,7 @@ var app = new Vue({
                         date: '10/01/2020 15:50:00',
                         text: 'Si, ma preferirei andare al cinema',
                         status: 'received'
-                    },
+                    }
 
                 ],
             },
@@ -99,26 +100,52 @@ var app = new Vue({
           
     },
 
-    computed: {
-       
-    },
-
-    methods: {
-        addActive(c) {
-            this.selectedId = c;
+    methods : {
+        setActiveChat(index) {
+            this.activeChat = index;
         },
-        getLastMessageDate() {
-            let contact = this.contacts.filter(contact => contact.id === this.selectedId)[0];
-            let lastMessage = contact.messages[contact.messages.length - 1];
-            console.log(lastMessage);
-            return lastMessage.date;
+        lastAccess(array) {
+            let last = '';
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].status === 'received') {
+                   last = array[i].date;
+               } 
+            }
+            return last;
+        },
+        lastMessage(array) {
+            let last = array[array.length - 1].text;
+            return last;
         },
 
-        submit(){
-          
-            console.log(this.text)
+        nowDateTime() {
+            const now = `${dayjs().date()}/${dayjs().month()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`;
+            console.log(now);
+            return now;
+        },
 
-        }
-        
+        newMessage(chat) {
+            const newMessage = {
+                date: this.nowDateTime(),
+                text: this.text,
+                status: 'sent'
+            };
+            console.log(newMessage);
+            chat.push(newMessage);
+            this.text = '';
+            this.msgReply(chat);
+        },
+
+        msgReply(chat) {
+            setTimeout(() => {
+                const newMessage = {
+                    date: this.nowDateTime(),
+                    text: 'Ok',
+                    status: 'received'
+                };
+                console.log(newMessage);
+                chat.push(newMessage);
+            }, 1000);
+        },
     },
-})
+});

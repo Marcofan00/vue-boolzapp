@@ -133,10 +133,12 @@ main {
 
  .last-message {
      align-self: flex-start;
-     margin-top: 5px;
      margin-right: 5px;
      color:#a9aeaf;
      font-size: 12px;
+     position: absolute;
+     
+
  }
 
  .last-chat {
@@ -181,21 +183,18 @@ input {
     flex-direction: column;
 }
 
-.sent {
-    background-color:#c4f5a0;
-    align-self: flex-end;
-    min-width: 40%;
-}
-
-.received {
-    background-color:rgb(255, 249, 239);
-    max-width: 40%;
-}
-
 .message {
     padding:5px;
     margin: 5px 20px;
     border-radius: 10px;
+    background-color: white;
+    width: 30%;
+}
+
+.message.sent{
+    background-color:#c4f5a0;
+    align-self: flex-end;
+    min-width: 40%;
 }
 
 .date{
@@ -216,3 +215,12 @@ input {
 .active {
     background-color: #dadbdb;
 }
+.friends{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    width: 300px;
+}
+
+
+
