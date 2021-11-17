@@ -9,6 +9,7 @@ body {
     background-color: #ddddd1;
 
 } 
+
 #background{
     background-color: #029588;
     height: 130px;
@@ -195,18 +196,23 @@ input {
     padding:5px;
     margin: 5px 20px;
     border-radius: 10px;
+}
+
+.date{
+    color:#a9aeaf ;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
+}
+
+.text {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.chat-friends{
     display: flex;
     flex-direction: column;
 }
-
-.message .date {
-    align-self: flex-end;
-    font-size: 12px;
-}
-.date{
-    color:#a9aeaf ;
-}
-
-.message .text {
-    margin-top: 10px;
+.active {
+    background-color: #dadbdb;
 }

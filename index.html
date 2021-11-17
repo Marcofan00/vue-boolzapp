@@ -45,10 +45,10 @@
                             <input type="text" placeholder="Cerca o inizia una nuova chat" id="search-inp">
                     </div>
                     <!-- contatti -->
-                    <div class="row" v-for="contact, i in contacts" :key="i">
+                    <div class="row" v-for="contact, i in contacts" :key="i" @click="addActive(contact.id);" :class="selectedId === contact.id? 'active' : '' " >
                         <div class="user-photo">
                             <div class="avatar">
-                                <img :src="'img/avatar'+ contact.avatar +'.jpg'" alt="avatar">
+                                <img :src="'img/avatar'+ contact.avatar +'.jpg'" alt="avatar1">
                             </div> 
                             <div class="friends"> 
                                 <p>{{contact.name}}</p>
@@ -64,13 +64,13 @@
                 <!-- chats -->
                 <section class="chat">
                     <div class="utente">
-                        <div class="user-photo">
+                        <div class="user-photo"v-for="contact in contacts" v-if="contact.id === selectedId">
                             <div class="avatar">
-                                <img src="img/avatar_1.jpg" alt="avatar">
+                                <img :src="'img/avatar'+ contact.avatar +'.jpg'" alt="avatar">
                             </div> 
                             <div class="friends"> 
-                                <p>Michele</p>
-                                <p class="login">Ultimo accesso oggi alle 7/10/2021 18:23:10</p>
+                                <p>{{contact.name}}</p>
+                                <p class="login">Ultimo accesso oggi alle {{getLastMessageDate()}}</p>
                             </div>
                         </div>
                         <div class="icons">
@@ -81,24 +81,18 @@
                     </div>
                     <!-- chat -->
                     <div class="chat-container">
-                        <div class="sent message">
-                            <p class="text">Ok...</p>
-                            <p class="date">7/10/2021 18:23:10</p>
+                        <div class="chat-friends" v-for="contact in contacts" v-if="contact.id === selectedId">
+                            <div class="message" v-for="message in contact.messages" v-for :class="message.status === 'sent'?'sent':'received'">
+                                <p class="text">{{message.text}}</p>
+                                <p class="date">{{message.date}}</p>
+                            </div>
                         </div>
-                        <div class="sent message">
-                            <p class="text">Ok...</p>
-                            <p class="date">7/10/2021 18:23:10</p>
-                        </div>
-                        <div class="received message">
-                            <p class="text">Ok...</p>
-                            <p class="date">7/10/2021 18:23:10</p>
-                        </div>
-                    </div>
-                    <div class="container-message">
-                        <i class="far fa-smile"></i>
-                        <input type="text" placeholder=" Scrivi un messaggio">
-                        <i class="fas fa-microphone"></i>
-                    </div>
+                    </div>    
+                        <div class="container-message">
+                            <i class="far fa-smile"></i>
+                            <input type="text" placeholder=" Scrivi un messaggio" v-model="text" @keyup.enter="submit">
+                            <i class="fas fa-microphone"></i>
+                        </div> 
                 </section>
             </div>
     

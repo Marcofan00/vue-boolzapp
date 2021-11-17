@@ -1,8 +1,11 @@
 var app = new Vue({
     el: "#container",
     data: {
+        selectedId: 1,
+        text:"",
         contacts: [ 
             {
+                id: 1,
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
@@ -26,6 +29,7 @@ var app = new Vue({
             },  
            
             {   
+                id: 2,
                 name: 'Fabio',
                 avatar: '_2',
                 visible: true,
@@ -49,6 +53,7 @@ var app = new Vue({
             }, 
 
             {
+                id: 3,
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
@@ -68,15 +73,11 @@ var app = new Vue({
                         text: 'Ah scusa!',
                         status: 'received'
                     },
-                    {
-                        date: '28/03/2020 16:15:22',
-                        text: 'Ah scusa!',
-                        status: 'received'
-                    },
                 ],
             },
 
-            {
+            {   
+                id: 4,
                 name: 'Luisa',
                 avatar: '_4',
                 visible: true,
@@ -94,6 +95,30 @@ var app = new Vue({
 
                 ],
             },
-        ],   
-    }
+        ], 
+          
+    },
+
+    computed: {
+       
+    },
+
+    methods: {
+        addActive(c) {
+            this.selectedId = c;
+        },
+        getLastMessageDate() {
+            let contact = this.contacts.filter(contact => contact.id === this.selectedId)[0];
+            let lastMessage = contact.messages[contact.messages.length - 1];
+            console.log(lastMessage);
+            return lastMessage.date;
+        },
+
+        submit(){
+          
+            console.log(this.text)
+
+        }
+        
+    },
 })
