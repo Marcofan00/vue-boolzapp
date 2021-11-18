@@ -8,6 +8,7 @@ var app = new Vue({
         },
 
         text : '',
+        searchUser: '',
         contacts: [ 
             {
                 name: 'Michele',
@@ -117,13 +118,11 @@ var app = new Vue({
             let last = array[array.length - 1].text;
             return last;
         },
-
         nowDateTime() {
             const now = `${dayjs().date()}/${dayjs().month()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`;
             console.log(now);
             return now;
         },
-
         newMessage(chat) {
             const newMessage = {
                 date: this.nowDateTime(),
@@ -135,7 +134,6 @@ var app = new Vue({
             this.text = '';
             this.msgReply(chat);
         },
-
         msgReply(chat) {
             setTimeout(() => {
                 const newMessage = {
@@ -147,5 +145,6 @@ var app = new Vue({
                 chat.push(newMessage);
             }, 1000);
         },
+        findUser : (array, input) => array.toLowerCase().includes(input),
     },
 });

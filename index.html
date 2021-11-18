@@ -42,10 +42,10 @@
                     <!-- search -->
                     <div class="search">
                             <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Cerca o inizia una nuova chat" id="search-inp">
+                            <input type="text" placeholder="Cerca o inizia una nuova chat" id="search-inp" v-model="searchUser">
                     </div>
                     <!-- contatti -->
-                    <div class="row" v-for="contact, i in contacts":key="i" @click="setActiveChat(i)":class="i === activeChat ? 'active' : null ">  
+                    <div class="row" v-for="contact, i in contacts":key="i" @click="setActiveChat(i)":class="i === activeChat ? 'active' : null " v-if="findUser(contact.name, searchUser)">  
                         <div class="user-photo">
                             <div class="avatar">
                                 <img class="avatar_pic" :src="contact.avatar" :alt="contact.name">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="last-message">
-                            7/10/2021 18:23:10
+                            7/10/2020 18:23:10
                         </div>
                     </div>
                     
@@ -89,9 +89,9 @@
                         </div>
                     </div>    
                         <div class="container-message">
-                            <i class="far fa-smile"></i>
+                            <i class="far fa-smile icons"></i>
                             <input type="new_message" placeholder=" Scrivi un messaggio" v-model="text"@keyup.enter="newMessage(contacts[activeChat].messages)">   
-                            <i class="fas fa-microphone"></i>
+                            <i class="fas fa-microphone icons"></i>
                         </div> 
                 </section>
             </div>
